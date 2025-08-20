@@ -5,8 +5,23 @@ from rest_framework.exceptions import PermissionDenied
 from rest_framework.decorators import action
 from django.db.models import Sum
 from rest_framework.response import Response
+from drf_spectacular.utils import extend_schema_view, extend_schema, OpenApiParameter
 
 
+@extend_schema_view(
+    retrieve=extend_schema(
+        parameters=[OpenApiParameter("pk", int, location=OpenApiParameter.PATH)]
+    ),
+    update=extend_schema(
+        parameters=[OpenApiParameter("pk", int, location=OpenApiParameter.PATH)]
+    ),
+    partial_update=extend_schema(
+        parameters=[OpenApiParameter("pk", int, location=OpenApiParameter.PATH)]
+    ),
+    destroy=extend_schema(
+        parameters=[OpenApiParameter("pk", int, location=OpenApiParameter.PATH)]
+    ),
+)
 class ReceiptViewSet(viewsets.ModelViewSet):
     serializer_class = ReceiptSerializer
     # authentication_classes = [FirebaseAuthentication]
@@ -37,6 +52,21 @@ class ReceiptViewSet(viewsets.ModelViewSet):
         })
 
 
+
+@extend_schema_view(
+    retrieve=extend_schema(
+        parameters=[OpenApiParameter("pk", int, location=OpenApiParameter.PATH)]
+    ),
+    update=extend_schema(
+        parameters=[OpenApiParameter("pk", int, location=OpenApiParameter.PATH)]
+    ),
+    partial_update=extend_schema(
+        parameters=[OpenApiParameter("pk", int, location=OpenApiParameter.PATH)]
+    ),
+    destroy=extend_schema(
+        parameters=[OpenApiParameter("pk", int, location=OpenApiParameter.PATH)]
+    ),
+)
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
@@ -46,7 +76,21 @@ class CategoryViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         return serializer.save()
     
-    
+
+@extend_schema_view(
+    retrieve=extend_schema(
+        parameters=[OpenApiParameter("pk", int, location=OpenApiParameter.PATH)]
+    ),
+    update=extend_schema(
+        parameters=[OpenApiParameter("pk", int, location=OpenApiParameter.PATH)]
+    ),
+    partial_update=extend_schema(
+        parameters=[OpenApiParameter("pk", int, location=OpenApiParameter.PATH)]
+    ),
+    destroy=extend_schema(
+        parameters=[OpenApiParameter("pk", int, location=OpenApiParameter.PATH)]
+    ),
+)
 class ItemViewSet(viewsets.ModelViewSet):
     serializer_class = ItemSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
