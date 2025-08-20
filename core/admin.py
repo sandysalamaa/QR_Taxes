@@ -18,6 +18,6 @@ class ReceiptAdmin(admin.ModelAdmin):
 
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ('name', 'invoice', 'category', 'quantity', 'unit_price', 'total_price')
+    list_display = ('name', 'receipt', 'category', 'quantity', 'unit_price', 'total_price')
     list_filter = ('category',)
-    search_fields = ('name', 'invoice__merchant_name')
+    search_fields = ('name', 'receipt__merchant_name')

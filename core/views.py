@@ -46,6 +46,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         return serializer.save()
     
+    
 class ItemViewSet(viewsets.ModelViewSet):
     serializer_class = ItemSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]

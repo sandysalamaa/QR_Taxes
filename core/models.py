@@ -42,10 +42,10 @@ class Receipt(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"{self.merchant_name} - {self.amount}"
+        return f"{self.merchant_name}"
     
 class Item(models.Model):
-    invoice = models.ForeignKey(Receipt, on_delete=models.CASCADE, related_name='items')
+    receipt = models.ForeignKey(Receipt, on_delete=models.CASCADE, related_name='items')
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     name = models.CharField(max_length=255) 
     quantity = models.PositiveIntegerField(default=1)
