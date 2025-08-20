@@ -99,16 +99,32 @@ WSGI_APPLICATION = 'tax_scan.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'neondb', 
+#         'USER': 'neondb_owner',
+#         'PASSWORD': 'npg_U2BxQA6eKpTh',
+#         'HOST': 'ep-nameless-sun-adyq60gv-pooler.c-2.us-east-1.aws.neon.tech',
+#         'PORT': '5432',
+#         'OPTIONS': {
+#             'sslmode': 'require',
+#         },
+#     }
+# }
+
+from decouple import config
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'neondb', 
-        'USER': 'neondb_owner',
-        'PASSWORD': 'npg_U2BxQA6eKpTh',
-        'HOST': 'ep-nameless-sun-adyq60gv-pooler.c-2.us-east-1.aws.neon.tech',
-        'PORT': '5432',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT', default='5432'),
         'OPTIONS': {
-            'sslmode': 'require',
+            'sslmode': config('DB_SSLMODE', default='require'),
         },
     }
 }
